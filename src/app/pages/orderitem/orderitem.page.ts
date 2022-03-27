@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class OrderitemPage implements OnInit {
   custid: any;
   items: any = [];
 
-  constructor(public _apiService: ApiService) {
+  constructor(public _apiService: ApiService, public toastController: ToastController) {
     this.getAllItemsData();
   }
 
@@ -27,10 +28,42 @@ export class OrderitemPage implements OnInit {
   getAllItemsData() {
     /* eslint no-underscore-dangle: 0 */
     this._apiService.getAllItemsData().subscribe((res: any) => {
-      console.log('SUCCESS ===', res);
       this.items = res;
     }, (error: any) => {
-      console.log('ERROR ===', error);
+      this.presentToast2();
     });
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      color: 'primary',
+      message: 'Success connect to server!',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async presentToast2() {
+    const toast = await this.toastController.create({
+      color: 'danger',
+      message: 'FAILED. Refresh again to get data',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  doRefresh(event) {
+    setTimeout(() => {
+      this.getAllItemsData();
+      event.target.complete();
+    }, 2000);
+  }
+
+  viewimagebutton(status){
+    if(status === 'complete'){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

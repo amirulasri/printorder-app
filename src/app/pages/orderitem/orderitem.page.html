@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
   <ion-card>
     <ion-card-header>
       <ion-progress-bar type="indeterminate"></ion-progress-bar>
@@ -13,9 +17,6 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-chip>
-        <ion-label color="secondary">View Image</ion-label>
-      </ion-chip>
       <ion-chip>
         <ion-label color="primary">Message</ion-label>
       </ion-chip>
@@ -53,7 +54,8 @@
   <h1>Items</h1>
   <ion-card *ngFor="let item of items">
     <ion-card-header>
-      <ion-progress-bar value="0.5"></ion-progress-bar>
+      <h3 class="titleitem">{{item.itemname}}</h3>
+      <ion-progress-bar color="{{item.progressbarcolor}}" value="{{item.progressbar}}"></ion-progress-bar>
       <ion-card-subtitle>Status: {{item.statusprint}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content class="cardcontentsetting">
@@ -91,6 +93,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+      <p style="text-align: right;" *ngIf="viewimagebutton(item.statusprint)"><ion-button color="primary" size="small">View Image</ion-button></p>
     </ion-card-content>
   </ion-card>
 </ion-content>
