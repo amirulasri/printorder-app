@@ -51,10 +51,10 @@
   </ion-card>
 
   <h1>Items</h1>
-  <ion-card>
+  <ion-card *ngFor="let item of items">
     <ion-card-header>
       <ion-progress-bar value="0.5"></ion-progress-bar>
-      <ion-card-subtitle>Status: Printing</ion-card-subtitle>
+      <ion-card-subtitle>Status: {{item.statusprint}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content class="cardcontentsetting">
       <ion-grid class="gridsetting">
@@ -63,7 +63,7 @@
             Name
           </ion-col>
           <ion-col>
-            Lab 9 Load and Store Operations.pdf
+            <b>{{item.itemname}}</b>
           </ion-col>
         </ion-row>
         <ion-row class="tableheader">
@@ -71,7 +71,23 @@
             Paper size
           </ion-col>
           <ion-col>
-            A4
+            {{item.papertype}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col size="4">
+            Color Quantity
+          </ion-col>
+          <ion-col>
+            {{item.colorquantity}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col size="4">
+            Black Quantity
+          </ion-col>
+          <ion-col>
+            {{item.blackwhitequantity}}
           </ion-col>
         </ion-row>
       </ion-grid>
