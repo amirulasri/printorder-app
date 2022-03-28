@@ -1,0 +1,32 @@
+<ion-content>
+  <br><br><br><br>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Print Order Register</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <form [formGroup]="form" (submit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input formControlName="username" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Full name</ion-label>
+          <ion-input formControlName="fullname" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Phone number</ion-label>
+          <ion-input formControlName="phoneno" required></ion-input>
+        </ion-item>
+        <br>
+        <ion-button color="primary" type="submit" expand="block" [disabled]="form.invalid">Register</ion-button>
+        <ion-button color="warning" (click)="login()" expand="block">Login</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

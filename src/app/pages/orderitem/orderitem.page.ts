@@ -8,14 +8,6 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./orderitem.page.scss'],
 })
 export class OrderitemPage implements OnInit {
-  itemid: any;
-  itemname: any;
-  blackquantity: any;
-  colorquantity: any;
-  papertype: any;
-  status: any;
-  price: any;
-  custid: any;
   items: any = [];
 
   constructor(public _apiService: ApiService, public toastController: ToastController) {

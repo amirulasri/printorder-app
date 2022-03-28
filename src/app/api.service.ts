@@ -1,14 +1,28 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from './user.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  private url = 'https://amirulasri.tplinkdns.com/printorderserver';
   constructor(public http: HttpClient) {
   }
 
   getAllItemsData(){
-    return this.http.get('https://amirulasri.tplinkdns.com/printorderserver/getitems.php');
+    return this.http.get(`${this.url}/getitems`);
+  }
+
+  register(user: User) {
+    return this.http.post(`${this.url}/register`, user);
+  }
+
+  login(credentials: User): Observable<string>{
+    return this.http.post<{token: string}>(`${this.url}/login`, credentials).pipe(
+      map(response => response.token)
+    );
   }
 }
