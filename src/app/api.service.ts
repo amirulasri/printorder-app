@@ -1,4 +1,4 @@
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user.model';
@@ -24,5 +24,16 @@ export class ApiService {
     return this.http.post<{token: string}>(`${this.url}/login`, credentials).pipe(
       map(response => response.token)
     );
+  }
+
+  onCreate() {
+    // Do this on service. But for this demo lets do here
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: 'Bearer ' + token
+    });
+
+    return this.http.post(`${this.url}/create`, 'body', { headers });
   }
 }

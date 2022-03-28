@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private menu: MenuController, private authService: ApiService) {
+    this.menu.enable(true, 'sidenav');
+  }
 
   ngOnInit() {
+    this.authService.onCreate().subscribe(console.log);
   }
 
 }

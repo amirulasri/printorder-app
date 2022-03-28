@@ -37,9 +37,9 @@ export class LoginPage implements OnInit {
     this.authService.login(this.form.value).subscribe(
       async token => {
         localStorage.setItem('token', token);
-        const toast = await this.toastCtrl.create({message: 'Login Success', duration: 3000, color: 'primary'});
+        this.form.reset();
+        this.route.navigate(['home']);
         loading.dismiss();
-        await toast.present();
       },
       async () => {
         const toast = await this.toastCtrl.create({message: 'Login Failed', duration: 3000, color: 'danger'});
