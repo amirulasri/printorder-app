@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card *ngFor="let order of orders">
     <ion-card-header>
       <ion-card-title>Active Order</ion-card-title>
     </ion-card-header>

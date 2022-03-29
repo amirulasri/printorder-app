@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user.model';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private url = 'https://amirulasri.tplinkdns.com/printorderserver';
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private route: Router) {
   }
 
   getAllItemsData(){
@@ -34,9 +35,16 @@ export class ApiService {
     });
 
     const datareceive = this.http.post(`${this.url}/create`, 'body', { headers });
-    if(1==1){
+    return datareceive;
+  }
 
-    }
+  getAllOrderData(){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: 'Bearer ' + token
+    });
+    const datareceive = this.http.post(`${this.url}/getallorders`, 'body', { headers });
     return datareceive;
   }
 }
