@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Order #182</ion-title>
+    <ion-title>Order #{{orderid}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      <ion-progress-bar></ion-progress-bar>
       <ion-card-subtitle>Status: Preparing</ion-card-subtitle>
       <ion-card-title>Total: RM0.00</ion-card-title>
     </ion-card-header>
@@ -96,6 +96,16 @@
       <p style="text-align: right;" *ngIf="viewimagebutton(item.statusprint)">
         <ion-button color="primary" size="small">View Image</ion-button>
       </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="checknotEmpty()">
+    <ion-card-header>
+      <ion-card-title>No Items</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Wait for items added
     </ion-card-content>
   </ion-card>
 </ion-content>

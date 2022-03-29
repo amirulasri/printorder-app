@@ -15,7 +15,6 @@ export class OrderitemPage implements OnInit {
   constructor(public _apiService: ApiService, public toastController: ToastController, private route: ActivatedRoute) {
     this.route.params.subscribe((param: any) => {
       this.orderid = param.orderid;
-      console.log(this.orderid);
       this.getAllItemsData(this.orderid);
     });
   }
@@ -23,7 +22,7 @@ export class OrderitemPage implements OnInit {
   ngOnInit() {
   }
 
-  getAllItemsData(orderids) {
+  getAllItemsData(orderids: any) {
     /* eslint no-underscore-dangle: 0 */
     this._apiService.getAllItemsData(orderids).subscribe((res: any) => {
       this.items = res;
@@ -62,6 +61,12 @@ export class OrderitemPage implements OnInit {
       return true;
     }else{
       return false;
+    }
+  }
+
+  checknotEmpty(){
+    if(this.items ===  null){
+      return true;
     }
   }
 }
