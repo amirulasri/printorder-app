@@ -5,16 +5,20 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let order of orders">
     <ion-card-header>
-      <ion-card-title>Active Order</ion-card-title>
+      <ion-card-title>{{order.date}}</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
-      Document.Pdf
+      {{order.printabout}}
       <br>
       <p style="text-align:right;">
-        <ion-chip>
+        <ion-chip [routerLink]="['/orderitem/', order.orderid]">
           <ion-label color="warning">View order</ion-label>
         </ion-chip>
       </p>

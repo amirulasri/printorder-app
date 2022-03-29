@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <ion-card>
     <ion-card-header>
@@ -93,7 +93,9 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <p style="text-align: right;" *ngIf="viewimagebutton(item.statusprint)"><ion-button color="primary" size="small">View Image</ion-button></p>
+      <p style="text-align: right;" *ngIf="viewimagebutton(item.statusprint)">
+        <ion-button color="primary" size="small">View Image</ion-button>
+      </p>
     </ion-card-content>
   </ion-card>
 </ion-content>

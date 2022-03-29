@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
 
@@ -11,17 +12,12 @@ export class HomePage implements OnInit {
   orders: any = [];
 
   constructor(public _apiService: ApiService, private menu: MenuController, private authService: ApiService,
-    public toastController: ToastController) {
+    public toastController: ToastController, private route: Router) {
     this.menu.enable(true, 'sidenav');
     this.getAllOrderData();
   }
 
   ngOnInit() {
-    this.authService.checkLogin().subscribe((res: any) => {
-      if(res.status === 'valid'){
-        console.log('OK');
-      }
-    });
   }
 
   getAllOrderData() {
@@ -47,6 +43,11 @@ export class HomePage implements OnInit {
       this.getAllOrderData();
       event.target.complete();
     }, 2000);
+  }
+
+  viewOrder(orderid){
+    //this.orderpage.setOrderId(orderid);
+    console.log('OK');
   }
 
 }

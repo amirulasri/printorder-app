@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'orderitem',
+    path: 'orderitem/:orderid',
     loadChildren: () => import('./pages/orderitem/orderitem.module').then( m => m.OrderitemPageModule)
   },
   {

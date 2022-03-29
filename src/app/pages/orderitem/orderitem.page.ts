@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
 
@@ -9,17 +10,22 @@ import { ApiService } from 'src/app/api.service';
 })
 export class OrderitemPage implements OnInit {
   items: any = [];
+  orderid: any;
 
-  constructor(public _apiService: ApiService, public toastController: ToastController) {
-    this.getAllItemsData();
+  constructor(public _apiService: ApiService, public toastController: ToastController, private route: ActivatedRoute) {
+    this.route.params.subscribe((param: any) => {
+      this.orderid = param.orderid;
+      console.log(this.orderid);
+      this.getAllItemsData(this.orderid);
+    });
   }
 
   ngOnInit() {
   }
 
-  getAllItemsData() {
+  getAllItemsData(orderids) {
     /* eslint no-underscore-dangle: 0 */
-    this._apiService.getAllItemsData().subscribe((res: any) => {
+    this._apiService.getAllItemsData(orderids).subscribe((res: any) => {
       this.items = res;
     }, (error: any) => {
       this.presentToast2();
@@ -46,7 +52,7 @@ export class OrderitemPage implements OnInit {
 
   doRefresh(event) {
     setTimeout(() => {
-      this.getAllItemsData();
+      this.getAllItemsData(this.orderid);
       event.target.complete();
     }, 2000);
   }
