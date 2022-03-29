@@ -8,13 +8,14 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
   constructor(private menu: MenuController, private authService: ApiService) {
     this.menu.enable(true, 'sidenav');
   }
 
   ngOnInit() {
-    this.authService.onCreate().subscribe(console.log);
+    this.authService.checkLogin().subscribe((res: any) => {
+      console.log(res);
+    });
   }
 
 }

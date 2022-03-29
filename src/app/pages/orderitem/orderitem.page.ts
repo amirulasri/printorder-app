@@ -51,7 +51,7 @@ export class OrderitemPage implements OnInit {
     }, 2000);
   }
 
-  viewimagebutton(status){
+  viewimagebutton(status: string){
     if(status === 'complete'){
       return true;
     }else{

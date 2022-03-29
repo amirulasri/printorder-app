@@ -26,14 +26,17 @@ export class ApiService {
     );
   }
 
-  onCreate() {
-    // Do this on service. But for this demo lets do here
+  checkLogin() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       // eslint-disable-next-line @typescript-eslint/naming-convention
       Authorization: 'Bearer ' + token
     });
 
-    return this.http.post(`${this.url}/create`, 'body', { headers });
+    const datareceive = this.http.post(`${this.url}/create`, 'body', { headers });
+    if(1==1){
+
+    }
+    return datareceive;
   }
 }
