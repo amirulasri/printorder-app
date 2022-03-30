@@ -45,9 +45,4 @@ export class HomePage implements OnInit {
     }, 2000);
   }
 
-  viewOrder(orderid){
-    //this.orderpage.setOrderId(orderid);
-    console.log('OK');
-  }
-
 }
