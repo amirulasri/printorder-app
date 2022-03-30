@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Order #{{orderid}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +16,7 @@
     <ion-card-header>
       <ion-progress-bar></ion-progress-bar>
       <ion-card-subtitle>Status: Preparing</ion-card-subtitle>
-      <ion-card-title>Total: RM0.00</ion-card-title>
+      <ion-card-title>Total: RM{{totalprice}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -90,6 +93,14 @@
           </ion-col>
           <ion-col>
             {{item.blackwhitequantity}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col size="4">
+            Price
+          </ion-col>
+          <ion-col>
+            RM{{item.price}}
           </ion-col>
         </ion-row>
       </ion-grid>

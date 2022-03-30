@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/api.service';
 export class OrderitemPage implements OnInit {
   items: any = [];
   orderid: any;
+  totalprice: any = 0.00;
 
   constructor(public _apiService: ApiService, public toastController: ToastController, private route: ActivatedRoute) {
     this.route.params.subscribe((param: any) => {
@@ -26,6 +27,14 @@ export class OrderitemPage implements OnInit {
     /* eslint no-underscore-dangle: 0 */
     this._apiService.getAllItemsData(orderids).subscribe((res: any) => {
       this.items = res;
+      if(this.items !== null){
+        let totalprices = 0.00;
+        // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+        this.items.forEach(function(item) {
+          totalprices = totalprices + parseFloat(item.price);
+        });
+        this.totalprice = (Math.round(totalprices * 100) / 100).toFixed(2);
+      }
     }, (error: any) => {
       this.presentToast2();
     });
@@ -56,16 +65,16 @@ export class OrderitemPage implements OnInit {
     }, 2000);
   }
 
-  viewimagebutton(status: string){
-    if(status === 'complete'){
+  viewimagebutton(status: string) {
+    if (status === 'complete') {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-  checknotEmpty(){
-    if(this.items ===  null){
+  checknotEmpty() {
+    if (this.items === null) {
       return true;
     }
   }
