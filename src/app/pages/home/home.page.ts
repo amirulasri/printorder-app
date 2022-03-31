@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class HomePage implements OnInit {
   orders: any = [];
+  orderemptystate: boolean;
 
   constructor(public _apiService: ApiService, private menu: MenuController,
     public toastController: ToastController) {
@@ -17,8 +18,8 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.menu.enable(true, 'sidenav');
     this.getAllOrderData();
+    this.menu.enable(true, 'sidenav');
   }
 
   ngOnInit() {
@@ -28,9 +29,16 @@ export class HomePage implements OnInit {
     /* eslint no-underscore-dangle: 0 */
     this._apiService.getAllOrderData().subscribe((res: any) => {
       this.orders = res;
+      if(res === null){
+        this.orderemptystate = true;
+      }
     }, (error) => {
       this.presentToast2();
     });
+  }
+
+  checkOrderExists(){
+    return this.orderemptystate;
   }
 
   async presentToast2() {

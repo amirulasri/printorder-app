@@ -11,7 +11,7 @@ export class AppComponent {
     {title: 'My Profile', url: 'profile', icon: 'person-circle'},
     {title: 'Orders', url: 'home', icon: 'bookmark'}
   ];
-  constructor(private router: Router, private menu: MenuController) {}
+  constructor(private router: Router) {}
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['login']);

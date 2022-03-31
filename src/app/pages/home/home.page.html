@@ -23,4 +23,14 @@
       
     </ion-card-content>
   </ion-card>
+
+  <ion-card *ngIf="checkOrderExists()">
+    <ion-card-header>
+      <ion-card-title>No Order</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Contact printer to create order  
+    </ion-card-content>
+  </ion-card>
 </ion-content>
