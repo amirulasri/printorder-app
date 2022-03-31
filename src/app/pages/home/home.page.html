@@ -18,9 +18,7 @@
       {{order.printabout}}
       <br>
       <p style="text-align:right;">
-        <ion-chip [routerLink]="['/orderitem/', order.orderid]">
-          <ion-label color="warning">View order</ion-label>
-        </ion-chip>
+        <ion-button color="primary" [routerLink]="['/orderitem/', order.orderid]">View Order</ion-button>
       </p>
       
     </ion-card-content>

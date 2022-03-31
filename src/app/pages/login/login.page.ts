@@ -11,9 +11,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private menu: MenuController, private route: Router,
+  constructor(public _apiService: ApiService, private menu: MenuController, private route: Router,
     private loadingCtrl: LoadingController, private toastCtrl: ToastController,
     private authService: ApiService) {
+    this.menu.enable(false, 'sidenav');
+  }
+
+  ionViewWillEnter() {
     this.menu.enable(false, 'sidenav');
   }
 
@@ -24,9 +28,40 @@ export class LoginPage implements OnInit {
   });
 
   ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      /* eslint no-underscore-dangle: 0 */
+      this._apiService.getCustomerData().subscribe((res: any) => {
+        if(res.status === 'valid'){
+          this.route.navigate(['home']);
+        }else{
+          this.presentToastinvalid();
+        }
+      }, (error) => {
+        this.presentToast2();
+      });
+    }
   }
 
-  register(){
+  async presentToast2() {
+    const toast = await this.toastCtrl.create({
+      color: 'danger',
+      message: 'Error',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async presentToastinvalid() {
+    const toast = await this.toastCtrl.create({
+      color: 'danger',
+      message: 'Invalid Session',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  register() {
     this.route.navigate(['register']);
   }
 
@@ -42,7 +77,7 @@ export class LoginPage implements OnInit {
         loading.dismiss();
       },
       async () => {
-        const toast = await this.toastCtrl.create({message: 'Login Failed', duration: 3000, color: 'danger'});
+        const toast = await this.toastCtrl.create({ message: 'Login Failed', duration: 3000, color: 'danger' });
         await toast.present();
         loading.dismiss();
       }

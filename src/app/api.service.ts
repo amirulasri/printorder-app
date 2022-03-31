@@ -52,4 +52,14 @@ export class ApiService {
     const datareceive = this.http.post(`${this.url}/getallorders`, 'body', { headers });
     return datareceive;
   }
+
+  getCustomerData(){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: 'Bearer ' + token
+    });
+    const datareceive = this.http.post(`${this.url}/getuserdata`, 'body', { headers });
+    return datareceive;
+  }
 }

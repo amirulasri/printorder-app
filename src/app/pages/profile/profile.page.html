@@ -5,14 +5,17 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Full name</ion-card-title>
+      <ion-card-title>{{userdata.fullname}}</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
-      User ID: <br>
-      Phone number: 
+      User ID: {{userdata.id}}<br>
+      Phone number: {{userdata.phoneno}}
     </ion-card-content>
   </ion-card> <br><br>
   <ion-card>

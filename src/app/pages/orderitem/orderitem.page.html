@@ -14,15 +14,12 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-progress-bar></ion-progress-bar>
-      <ion-card-subtitle>Status: Preparing</ion-card-subtitle>
+      <ion-progress-bar value="{{totalpercentcompletebar}}"></ion-progress-bar>
+      <ion-card-subtitle>Status: {{totalpercentcomplete}}% Complete</ion-card-subtitle>
       <ion-card-title>Total: RM{{totalprice}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-chip>
-        <ion-label color="primary">Message</ion-label>
-      </ion-chip>
     </ion-card-content>
   </ion-card>
 
@@ -39,7 +36,7 @@
             Name
           </ion-col>
           <ion-col>
-            Wan Asyraaf
+            {{userdata.fullname}}
           </ion-col>
         </ion-row>
         <ion-row class="tableheader">
@@ -47,7 +44,7 @@
             Phone no
           </ion-col>
           <ion-col>
-            0111092989
+            {{userdata.phoneno}}
           </ion-col>
         </ion-row>
       </ion-grid>

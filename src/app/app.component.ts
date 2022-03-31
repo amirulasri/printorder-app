@@ -15,6 +15,5 @@ export class AppComponent {
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['login']);
-    this.menu.enable(false, 'sidenav');
   }
 }

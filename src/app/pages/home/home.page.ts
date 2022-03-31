@@ -12,6 +12,11 @@ export class HomePage implements OnInit {
 
   constructor(public _apiService: ApiService, private menu: MenuController,
     public toastController: ToastController) {
+    this.getAllOrderData();
+    this.menu.enable(true, 'sidenav');
+  }
+
+  ionViewWillEnter(){
     this.menu.enable(true, 'sidenav');
     this.getAllOrderData();
   }
