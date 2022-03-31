@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
 
@@ -11,8 +10,8 @@ import { ApiService } from 'src/app/api.service';
 export class HomePage implements OnInit {
   orders: any = [];
 
-  constructor(public _apiService: ApiService, private menu: MenuController, private authService: ApiService,
-    public toastController: ToastController, private route: Router) {
+  constructor(public _apiService: ApiService, private menu: MenuController,
+    public toastController: ToastController) {
     this.menu.enable(true, 'sidenav');
     this.getAllOrderData();
   }
@@ -24,7 +23,7 @@ export class HomePage implements OnInit {
     /* eslint no-underscore-dangle: 0 */
     this._apiService.getAllOrderData().subscribe((res: any) => {
       this.orders = res;
-    }, (error: any) => {
+    }, (error) => {
       this.presentToast2();
     });
   }
