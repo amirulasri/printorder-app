@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'printorder',
+  appId: 'com.amirulasri.app',
+  appName: 'Print Order',
   webDir: 'www',
   bundledWebRuntime: false,
   cordova: {

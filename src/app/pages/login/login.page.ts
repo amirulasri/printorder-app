@@ -14,11 +14,13 @@ export class LoginPage implements OnInit {
   constructor(public _apiService: ApiService, private menu: MenuController, private route: Router,
     private loadingCtrl: LoadingController, private toastCtrl: ToastController,
     private authService: ApiService) {
-    this.menu.enable(false, 'sidenav');
   }
 
-  ionViewWillEnter() {
-    this.menu.enable(false, 'sidenav');
+  ionViewDidEnter(): void {
+    this.menu.enable(false);
+  }
+  ionViewDidLeave(): void {
+    this.menu.enable(true);
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -32,9 +34,9 @@ export class LoginPage implements OnInit {
     if (token !== null) {
       /* eslint no-underscore-dangle: 0 */
       this._apiService.getCustomerData().subscribe((res: any) => {
-        if(res.status === 'valid'){
+        if (res.status === 'valid') {
           this.route.navigate(['home']);
-        }else{
+        } else {
           this.presentToastinvalid();
         }
       }, (error) => {

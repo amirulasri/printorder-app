@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-home',
@@ -11,34 +12,47 @@ export class HomePage implements OnInit {
   orders: any = [];
   orderemptystate: boolean;
 
-  constructor(public _apiService: ApiService, private menu: MenuController,
-    public toastController: ToastController) {
-    this.getAllOrderData();
-    this.menu.enable(true, 'sidenav');
-  }
-
-  ionViewWillEnter(){
-    this.getAllOrderData();
-    this.menu.enable(true, 'sidenav');
+  constructor(public _apiService: ApiService,
+    public toastController: ToastController, private localNotifications: LocalNotifications) {
   }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter(): void {
+    this.getAllOrderData();
+    this.checkOrderExists();
+  }
+  ionViewDidLeave(): void {
+    this.orders = [];
+    this.checkOrderExists();
+  }
+
+  testnotification() {
+    // Schedule a single notification
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'Single ILocalNotification',
+    });
   }
 
   getAllOrderData() {
     /* eslint no-underscore-dangle: 0 */
     this._apiService.getAllOrderData().subscribe((res: any) => {
       this.orders = res;
-      if(res === null){
-        this.orderemptystate = true;
-      }
-    }, (error) => {
+    }, () => {
       this.presentToast2();
     });
   }
 
-  checkOrderExists(){
-    return this.orderemptystate;
+  checkOrderExists() {
+    let statebool = false;
+    if (this.orders === null) {
+      statebool = true;
+    } else {
+      statebool = false;
+    }
+    return statebool;
   }
 
   async presentToast2() {
