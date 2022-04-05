@@ -62,4 +62,15 @@ export class ApiService {
     const datareceive = this.http.post(`${this.url}/getuserdata`, 'body', { headers });
     return datareceive;
   }
+
+  //GET DATA WITHOUT LOGIN
+  getAllItemsDataPass(orderid: any){
+    const datareceive = this.http.post(`${this.url}/orderview/getitems?d=${orderid}`, 'body');
+    return datareceive;
+  }
+
+  getManagerDataPass(orderid: any){
+    const datareceive = this.http.post(`${this.url}/orderview/getmanagerdata?d=${orderid}`, 'body');
+    return datareceive;
+  }
 }

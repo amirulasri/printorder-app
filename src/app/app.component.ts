@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -8,11 +8,11 @@ import { MenuController } from '@ionic/angular';
 })
 export class AppComponent {
   public appPages = [
-    {title: 'My Profile', url: 'profile', icon: 'person-circle'},
-    {title: 'Orders', url: 'home', icon: 'bookmark'}
+    { title: 'My Profile', url: 'profile', icon: 'person-circle' },
+    { title: 'Orders', url: 'home', icon: 'bookmark' }
   ];
-  constructor(private router: Router) {}
-  logout(){
+  constructor(private router: Router) { }
+  logout() {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }

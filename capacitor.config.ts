@@ -5,6 +5,13 @@ const config: CapacitorConfig = {
   appName: 'Print Order',
   webDir: 'www',
   bundledWebRuntime: false,
+  plugins: {
+    // ...
+    SplashScreen: {
+      launchAutoHide: false,
+      androidSplashResourceName: 'launch_splash',
+    },
+  },
   cordova: {
     preferences: {
       ScrollEnabled: 'false',

@@ -13,6 +13,13 @@ export class ProfilePage {
     this.getUserData();
   }
 
+  ionViewDidEnter(): void {
+    this.getUserData();
+  }
+  ionViewDidLeave(): void {
+    this.userdata = [];
+  }
+
   getUserData() {
     /* eslint no-underscore-dangle: 0 */
     this._apiService.getCustomerData().subscribe((res: any) => {

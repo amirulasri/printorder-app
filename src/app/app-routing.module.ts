@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'orderview/:orderid',
+    loadChildren: () => import('./pages/orderview/orderview.module').then( m => m.OrderviewPageModule)
   }
 ];
 

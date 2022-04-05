@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order #{{orderid}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-progress-bar value="{{totalpercentcompletebar}}"></ion-progress-bar>
+      <ion-card-subtitle>Status: {{totalpercentcomplete}}% Complete</ion-card-subtitle>
+      <ion-card-title>Total: RM{{totalprice}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="cardcontentsetting">
+      <ion-grid class="gridsetting">
+        <ion-row class="tableheader">
+          <ion-col>
+            Printer (Manager)
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col>
+            Name
+          </ion-col>
+          <ion-col>
+            {{managerdata.name}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col>
+            Email
+          </ion-col>
+          <ion-col>
+            {{managerdata.email}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button color="primary" size="small" expand="block">Login to view all order</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <h1>Items</h1>
+  <ion-card *ngFor="let item of items">
+    <ion-card-header>
+      <h3 class="titleitem">{{item.itemname}}</h3>
+      <ion-progress-bar color="{{item.progressbarcolor}}" value="{{item.progressbar}}"></ion-progress-bar>
+      <ion-card-subtitle>Status: {{item.statusprint}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="cardcontentsetting">
+      <ion-grid class="gridsetting">
+        <ion-row class="tableheader">
+          <ion-col size="3">
+            Name
+          </ion-col>
+          <ion-col>
+            <b>{{item.itemname}}</b>
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col size="3">
+            Paper size
+          </ion-col>
+          <ion-col>
+            {{item.papertype}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col size="4">
+            Color Quantity
+          </ion-col>
+          <ion-col>
+            {{item.colorquantity}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col size="4">
+            Black Quantity
+          </ion-col>
+          <ion-col>
+            {{item.blackwhitequantity}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="tableheader">
+          <ion-col size="4">
+            Price
+          </ion-col>
+          <ion-col>
+            RM{{item.price}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <p style="text-align: right; display: none;" *ngIf="viewimagebutton(item.statusprint)">
+        <ion-button color="primary" size="small">View Image</ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="checknotEmpty()">
+    <ion-card-header>
+      <ion-card-title>No Items</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Wait for items added
+    </ion-card-content>
+  </ion-card>
+</ion-content>
