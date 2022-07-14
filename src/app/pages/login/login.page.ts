@@ -40,12 +40,12 @@ export class LoginPage implements OnInit {
           this.presentToastinvalid();
         }
       }, (error) => {
-        this.presentToast2();
+        this.presentToast2(error);
       });
     }
   }
 
-  async presentToast2() {
+  async presentToast2(error: any) {
     const toast = await this.toastCtrl.create({
       color: 'danger',
       message: 'Error',

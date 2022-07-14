@@ -12,6 +12,10 @@ export class ApiService {
   constructor(public http: HttpClient) {
   }
 
+  changeCustomerInformation(newCustData: any){
+    return;
+  }
+
   getAllItemsData(orderid: any){
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({

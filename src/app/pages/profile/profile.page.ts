@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
+import { EditCustomerModalPage } from '../edit-customer-modal/edit-customer-modal.page';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ProfilePage {
   userdata: any = [];
-  constructor(public _apiService: ApiService, public toastController: ToastController) {
+  constructor(public _apiService: ApiService, public toastController: ToastController, private editCustModal: ModalController) {
     this.getUserData();
   }
 
@@ -27,6 +28,14 @@ export class ProfilePage {
     }, (error: any) => {
       this.presentToast2();
     });
+  }
+
+  async openeditcustmodal(){
+    const modal = await this.editCustModal.create({
+      component: EditCustomerModalPage
+    });
+
+    await modal.present();
   }
 
   async presentToast2() {

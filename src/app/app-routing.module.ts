@@ -30,7 +30,11 @@ const routes: Routes = [
   {
     path: 'orderview/:orderid',
     loadChildren: () => import('./pages/orderview/orderview.module').then( m => m.OrderviewPageModule)
+  },  {
+    path: 'edit-customer-modal',
+    loadChildren: () => import('./pages/edit-customer-modal/edit-customer-modal.module').then( m => m.EditCustomerModalPageModule)
   }
+
 ];
 
 @NgModule({
